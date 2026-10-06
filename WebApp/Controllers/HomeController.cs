@@ -16,6 +16,34 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Hello()
+    {
+        return Content("Hello, from ASP.NET", "text/plain; charset=utf-8");
+    }
+    
+    public IActionResult About() 
+    {
+        return View();
+    }
+
+    public IActionResult Contact()
+    {
+        return View();
+    }
+
+    public IActionResult Age(DateTime? birth)
+    {
+        if (birth == null)
+        {
+            return BadRequest();
+        }
+        
+        var age = DateTime.Now - birth.Value;
+        ViewBag.Age = $"{age.Days / 365} years {age.Days} days";
+        
+        return View();
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
