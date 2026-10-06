@@ -21,4 +21,9 @@ public class BookController : Controller
         ViewBag.Name = name;
         return View();
     }
+
+    public IActionResult EchoForm()
+    {
+        return View();
+    }
 }

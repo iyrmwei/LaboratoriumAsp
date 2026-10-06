@@ -38,9 +38,14 @@ public class HomeController : Controller
             return BadRequest();
         }
         
-        var age = DateTime.Now - birth.Value;
-        ViewBag.Age = $"{age.Days / 365} years {age.Days} days";
+        var age = DateTime.Now.Year - birth.Value.Year;
+        ViewBag.Age = age;
         
+        return View();
+    }
+
+    public IActionResult AgeForm()
+    {
         return View();
     }
 
