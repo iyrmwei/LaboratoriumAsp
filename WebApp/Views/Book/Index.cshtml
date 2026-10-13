@@ -1,3 +1,19 @@
-﻿<h2>Lista książek</h2>
-
-<a asp-controller="Book" asp-action="EchoForm">Formularz echo</a>
+﻿@model List<Book>
+<h2>Książki</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Dodaj książkę</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Rok</th>
+        <th>Cena</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var book in Model)
+    {
+        <partial model="@book" name="_BookRow" />
+    }
+    </tbody>
+</table>
