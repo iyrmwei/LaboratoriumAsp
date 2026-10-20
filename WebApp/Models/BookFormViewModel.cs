@@ -10,6 +10,8 @@ public class BookFormViewModel: IValidatableObject
     public string Title { get; set; } = "";
 
     [Required, Isbn]                          // własny atrybut – część E
+    [RegularExpression("^(?:ISBN(?:-1[03])?:?\\s*)?(?:(?=(?:\\D*\\d){13}$)97[89][- ]?\\d{1,5}[- ]?\\d{1,7}[- ]?\\d{1,7}[- ]?\\d|(?=(?:\\D*\\d){9}[\\dXx]$)\\d{1,5}[- ]?\\d{1,7}[- ]?\\d{1,7}[- ]?[\\dXx])$",
+        ErrorMessage = "Nieprawidłowy format ISBN")]
     public string Isbn { get; set; } = "";
 
     [DataType(DataType.Date)] [NotInFuture]   // własny atrybut – część E
@@ -22,7 +24,7 @@ public class BookFormViewModel: IValidatableObject
     [Range(0.01, 10000, ErrorMessage = "Cena musi być dodatnia")] [Display(Name = "Cena")]
     public decimal Price { get; set; }
 
-    [Required, Display(Name = "Autor"), RegularExpression("^[A-Z]{3}-\\d{4}$")]
+    [Required, Display(Name = "Autor")]
     public string Author { get; set; } = "";
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
